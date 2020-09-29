@@ -10,8 +10,8 @@ module.exports = {
     siteTitle: `dindatc`,
     siteHeadline: `dindatc - personal blog`,
     siteUrl: `https://www.dindatc.com`,
-     siteDescription: `Dinda Calista's personal site & blog. Writing about data analytics and other stuff.`,
-     siteImage: `/dinda_avatar.jpg`,
+    siteDescription: `Dinda Calista's personal site & blog. Writing about data analytics and other stuff.`,
+    siteImage: `/dinda_avatar.jpg`
   },
   plugins: [
     {
