@@ -8,6 +8,10 @@ module.exports = {
   siteMetadata: {
     siteTitleAlt: `Dinda Tisi Calista`,
     siteTitle: `dindatc`,
+    siteHeadline: `dindatc - personal blog`,
+    siteUrl: `https://www.dindatc.com`,
+     siteDescription: `Dinda Calista's personal site & blog. Writing about data analytics and other stuff.`,
+     siteImage: `/dinda_avatar.jpg`,
   },
   plugins: [
     {
@@ -41,9 +45,20 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-google-analytics-gdpr`,
       options: {
-        trackingId: "UA-108869482-2",
+        // The property ID; the tracking code won't be generated without it.
+        trackingId: "UA-108869482-2", 
+        enableDevelopment: false, // default false
+        anonymizeIP: true,
+        autoStartWithCookiesEnabled: false, 
+        // Optional parameter - Configuration for react-ga and google analytics 
+        reactGaOptions: {
+            debug: true,
+            gaOptions: {
+                sampleRate: 10
+            }
+        }
       },
     },
     `gatsby-plugin-sitemap`,
