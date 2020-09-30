@@ -1,0 +1,70 @@
+---
+title: SQL Tricks - Getting latest value in Group and Dynamic Week
+date: 2020-09-30
+description: Simple hive query tricks to avoid doing lots of steps & typing when getting Getting the latest value of a group (combined with sums of other columns) and dynamic week generation for each date record.
+tags:
+  - SQL
+---
+
+
+### 1. Getting the latest value along with SUM
+*without window function or CTE*
+
+I recently had to work on `bid_modifier` data for our Search Engine Marketing (SEM) bidding. I have a daily summary table which consist of the `bid_modifier` column.
+
+Take the table below as an example:
+```
+date INT, -- yyyymmdd format 
+adgroup_id INT, 
+bid_modifier DOUBLE, 
+cost INT, 
+revenue INT
+```
+
+I want to produce a table with adgroup_id dimension, latest bid_modifier value, and SUM of cost & revenue. There are multiple alternatives to do this, but most of them require multiple steps:
+- create a CTE to get the bid_midifier for latest ymd, then join it with the table that sums the other columns.
+- create a CTE to rank the rows (partition by adgroup_id order by date DESC) and then select the data `WHERE rank = 1`, and then join it with another cte that contains the sum of other columns
+- and many more.
+
+I was too lazy, so I tried to come up with a hack. I ended up doing this:
+```
+SELECT 
+	adgroup_id
+	SUBSTR(MAX(CONCAT(date,bid_modifier)), 9, MAX(CONCAT(date,bid_modifier))+1) AS latest_bid_modifier
+	SUM(cost),
+	SUM(revenue)
+FROM ...
+GROUP BY 
+	adgroup_id
+```
+
+This particular line
+```
+SUBSTR(MAX(CONCAT(date,bid_modifier)), 9, MAX(CONCAT(date,bid_modifier))+1) 
+```
+will sort the data based on the max date, and then it will be appended with the value of bid_modifier, and I take only the chars after the date part. Hence, I got the latest value of `bid_modifier`.
+
+The `MAX(CONCAT(date,bid_modifier))+1` is used because the `bid_modifier` column don't have a fixed total chars. It could be 0 (1 char), or 1.5 (3 chars), or 4 chars too. Therefore it's better to have a dynamic bound for the substring.
+
+
+### 2. Generating Dynamic Week 
+For each day, I want to know what was the total value from the past week, a week ago, two weeks ago, and so on. But in this case, I need the week to be generated dynamically, instead of the default week grouping that will always start and end on the same day. I want 1 week to be define as a group of 7 day, starting from the last day.
+
+There was an existing solution, but I found it quite ugly, because I would need to define all possible cases. It's something like this:
+```
+CASE 
+	WHEN DATEDIFF(date, CURRENT_DATE()) < 7 THEN 0
+	WHEN DATEDIFF(date, CURRENT_DATE()) < 14 THEN 1
+	WHEN DATEDIFF(date, CURRENT_DATE()) < 21 THEN 2
+	...
+END AS num_weeks_ago
+```
+
+I noticed that it could be simplified into:
+```
+DATEDIFF(date, CURRENT_DATE()) DIV 7 AS num_weeks_ago
+```
+
+If you need to run in on a workflow, you can replace the  `CURRENT_DATE()` with the date parameter, so that you're not restricted to only calculating the value from the current date.
+
+By using `DIV`, I will always get the integer value of from the date difference operation result that can be divided by 7, which is the week!
