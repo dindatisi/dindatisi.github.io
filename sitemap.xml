@@ -3,6 +3,7 @@
 <url> <loc>https://www.dindatc.com/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://www.dindatc.com/blog</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://www.dindatc.com/tags</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://www.dindatc.com/sharing-and-exporting-plotly-chart-as-html</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://www.dindatc.com/sql-tricks-getting-latest-value-in-group-and-dynamic-week</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://www.dindatc.com/on-retention-proximity-and-being-good-enough</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://www.dindatc.com/on-mediocrity</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -16,6 +17,7 @@
 <url> <loc>https://www.dindatc.com/tags/bahasa-indonesia</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://www.dindatc.com/tags/books</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://www.dindatc.com/tags/learning</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://www.dindatc.com/tags/python</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://www.dindatc.com/tags/sql</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://www.dindatc.com/tags/thoughts</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://www.dindatc.com/tags/travel</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
