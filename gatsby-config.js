@@ -54,7 +54,7 @@ module.exports = {
         autoStartWithCookiesEnabled: false, 
         // Optional parameter - Configuration for react-ga and google analytics 
         reactGaOptions: {
-            debug: true,
+            debug: false,
             gaOptions: {
                 sampleRate: 10
             }

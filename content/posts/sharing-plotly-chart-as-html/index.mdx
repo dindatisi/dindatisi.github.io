@@ -1,0 +1,26 @@
+---
+title: Sharing and Exporting Plotly Chart as HTML
+date: 2020-11-12
+description: How to keep plotly chart interactive when sharing to others
+tags:
+  - Analytics
+  - Python
+---
+
+I like using Plotly ([plotly express](https://plotly.com/python/plotly-express/)) in my Jupyter Notebook because I don't need to take care of axis formatting to be able to read the chart properly. Plotly takes care of it and I can also hover  through the chart to see the values. It's just amazing.
+
+But I always had a problem when I wanted to share the chart to others. I used to import the chart as a *.png* file. It will still look nice, but the chart will no longer be interactive as it will be converted into an image.
+
+Recently a colleague asked about how to embed plotly chart in a dropbox paper. I guess normally we would then generate the iframe for the chart and then embed it. But I don't think dropbox paper support embedding iframe. Then an idea popped in my mind to just export the chart as html and attach that html file. 
+
+```
+fig = # your plotly chart
+fig.write_html('chartname.html')
+```
+
+Voila! That's how I imported my first plotly html lol. 
+
+Why is this a good option to share a plotly chart?
+1. You maintain the interactivity of the chart (you can hover through and see the values!)
+2. Anyone with a browser can easily open an html file. No need for any technical knowledge or extra tools installation!
+
