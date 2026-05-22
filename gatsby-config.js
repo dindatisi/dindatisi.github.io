@@ -9,7 +9,7 @@ module.exports = {
     siteTitleAlt: `Dinda Tisi Calista`,
     siteTitle: `dindatc`,
     siteHeadline: `dindatc - personal blog`,
-    siteUrl: `https://www.dindatc.com`,
+    siteUrl: `https://dindatisi.github.io`,
     siteDescription: `Dinda Calista personal site & blog. Writing about data analytics and other stuff.`,
     siteImage: `/dinda_avatar.jpg`
   },
